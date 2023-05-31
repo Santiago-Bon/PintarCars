@@ -13,6 +13,16 @@ namespace CapaNegocio
         CD_Costos_Generales oCD_Costos_Generales = new CD_Costos_Generales();
 
 
+        //Consultar
+
+
+        public string BuscarNumeroCostosGenerales()
+        {
+            string factura = oCD_Costos_Generales.BuscarNumeroCostosGenerales();
+            return factura;
+        }
+
+
         //Insertar
 
 

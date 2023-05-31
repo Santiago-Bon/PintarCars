@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Pintacars_Express.FrmInicio_Sesion;
 
 namespace Pintacars_Express
 {
@@ -21,6 +22,11 @@ namespace Pintacars_Express
         CN_Costos_Generales_Materiales oCN_Costos_Generales_Materiales = new CN_Costos_Generales_Materiales();
         CN_Costos_Generales_Trabajadores oCN_Costos_Generales_Trabajadores = new CN_Costos_Generales_Trabajadores();
 
+        int numerocostosgenerales = 0;
+        string numeroordentrabajo = FrmOrden_Trabajo.OrdenTrabajoGlobal.OrdenTrabajo;
+        float valortotalmateriales = 0;
+        float valortotaltrabajadores = 0;
+        string idvendedor = string.Empty;
 
         public FrmCostos_Generales()
         {
@@ -29,9 +35,13 @@ namespace Pintacars_Express
 
         private void Orden_Servicio_Load(object sender, EventArgs e)
         {
+            BuscarNumeroCostosGenerales();
             MostrarMateriales();
             MostrarTipoTrabajador();
             MostrarMarcas();
+            TraerUsuario();
+            BtnTerminar.Enabled = false;
+            LblNumero_Orden_Trabajo.Text = "N° " + numeroordentrabajo;
             //creacion_Dgv_Costo_Materiales();
             //creacion_Dgv_Costo_Mano_de_Obra();
         }
@@ -84,7 +94,7 @@ namespace Pintacars_Express
 
         //    DataRow filas = dt.NewRow();
 
-            
+
         //    DgvCosto_Materiales.RowHeadersVisible = false;
 
         //    DgvCosto_Materiales.DataSource = dt;
@@ -105,6 +115,31 @@ namespace Pintacars_Express
 
         //    DgvCosto_Mano_Obra.DataSource = dt;
         //}
+
+
+        //Consultar
+
+
+        private void BuscarNumeroCostosGenerales()
+        {
+            if (oCN_Costos_Generales.BuscarNumeroCostosGenerales() != " ")
+            {
+                numerocostosgenerales = Convert.ToInt32(oCN_Costos_Generales.BuscarNumeroCostosGenerales()) + 1;
+                LblNumero_Costos_Generales.Text = "N° " + numerocostosgenerales.ToString();
+            }
+            else
+            {
+                numerocostosgenerales = 1;
+                LblNumero_Costos_Generales.Text = "N° " + numerocostosgenerales.ToString();
+            }
+        }
+
+
+        private void TraerUsuario()
+        {
+            TxtRecibe.Text = UsuarioGlobal.Usuario.Rows[0][1].ToString();
+            idvendedor = UsuarioGlobal.Usuario.Rows[0][0].ToString();
+        }
 
 
         private void MostrarMateriales()
@@ -136,7 +171,60 @@ namespace Pintacars_Express
             CboMarca.SelectedIndex = -1;
         }
 
+
         #endregion
+
+
+        //Confirmar
+
+
+        private void BtnConfirmar_Click(object sender, EventArgs e)
+        {
+            valortotalmateriales = 0;
+            valortotaltrabajadores = 0;
+
+            foreach (DataGridViewRow filas in DgvCosto_Materiales.Rows)
+            {
+                if (filas.Cells["CANTIDAD"].Value.ToString() == null ||
+                    filas.Cells["COSTO"].Value.ToString() == null ||
+                    filas.Cells["FECHA_COMPRA"].Value.ToString() == null ||
+                    filas.Cells["Cod"].Value.ToString() == null ||
+                    filas.Cells["DESCRIPCIÓN"].Value.ToString() == null)
+                {
+                    break;
+                }
+                else
+                {
+                    valortotalmateriales += float.Parse(filas.Cells["COSTO"].Value.ToString()) * float.Parse(filas.Cells["CANTIDAD"].Value.ToString());
+                    DgvCosto_Materiales.AllowUserToAddRows = false;
+                }
+            }
+
+            foreach (DataGridViewRow filas in DgvCosto_Mano_Obra.Rows)
+            {
+                if (filas.Cells["POSICIONES"].Value.ToString() == null ||
+                    filas.Cells["RESPONSABLES"].Value.ToString() == null ||
+                    filas.Cells["COSTOPHORA"].Value.ToString() == null ||
+                    filas.Cells["Cod"].Value.ToString() == null)
+                {
+                    break;
+                }
+                else
+                {
+                    //DgvCosto_Mano_Obra.AllowUserToAddRows = false;
+                    valortotaltrabajadores += float.Parse(filas.Cells["COSTOPHORA"].Value.ToString());
+                }
+            }
+            TxtCosto_Total_Materiales.Text = valortotalmateriales.ToString();
+            TxtCosto_Total_Mano_Obra.Text = valortotaltrabajadores.ToString();
+            TxtCosto_Total.Text = (valortotalmateriales + valortotaltrabajadores).ToString();
+            BtnTerminar.Enabled = true;
+            DgvCosto_Materiales.AllowUserToAddRows = true;
+            //DgvCosto_Mano_Obra.AllowUserToAddRows = true;
+        }
+
+
+        //Insertar
 
 
         private void BtnTerminar_Click(object sender, EventArgs e)
@@ -151,19 +239,13 @@ namespace Pintacars_Express
             costos_generales.Costo_Total_Materiales = float.Parse(TxtCosto_Total_Materiales.Text);
             costos_generales.Costo_Total_Mano_Obra = float.Parse(TxtCosto_Total_Mano_Obra.Text);
             costos_generales.Costo_Total = float.Parse(TxtCosto_Total.Text);
-            costos_generales.D_I_Usuario = TxtRecibe.Text;
+            costos_generales.D_I_Usuario = idvendedor;
             costos_generales.Matricula_Vehiculo = TxtMatricula.Text;
-            costos_generales.Cod_Orden_Trabajo = 1;
+            costos_generales.Cod_Orden_Trabajo = Convert.ToInt32(numeroordentrabajo);
             oCN_Costos_Generales.InsertarCostosGenerales(costos_generales);
 
             foreach (DataGridViewRow filas in DgvCosto_Materiales.Rows)
-            {
-                //MessageBox.Show(filas.Cells["CANTIDAD"].Value.ToString());
-                //MessageBox.Show(filas.Cells["COSTO"].Value.ToString());
-                //MessageBox.Show(filas.Cells["FECHA_COMPRA"].Value.ToString());
-                //MessageBox.Show(filas.Cells["Cod"].Value.ToString());
-                //MessageBox.Show(filas.Cells["DESCRIPCIÓN"].Value.ToString());
-
+            { 
                 if (filas.Cells["CANTIDAD"].Value.ToString() == null ||
                     filas.Cells["COSTO"].Value.ToString() == null ||
                     filas.Cells["FECHA_COMPRA"].Value.ToString() == null ||
@@ -178,7 +260,7 @@ namespace Pintacars_Express
                     costos_generales_materiales.Costos_Unitarios = float.Parse(filas.Cells["COSTO"].Value.ToString());
                     costos_generales_materiales.Fecha_Compra = Convert.ToDateTime(filas.Cells["FECHA_COMPRA"].Value.ToString());
                     costos_generales_materiales.Cod_Materiales = Convert.ToInt32(filas.Cells["Cod"].Value.ToString());
-                    costos_generales_materiales.Cod_Costos_Generales = 1;
+                    costos_generales_materiales.Cod_Costos_Generales = numerocostosgenerales;
 
                     oCN_Costos_Generales_Materiales.InsertarCostosGeneralesMateriales(costos_generales_materiales);
                     DgvCosto_Materiales.AllowUserToAddRows = false;
@@ -198,7 +280,7 @@ namespace Pintacars_Express
                     costos_generales_trabajadores.responsable = filas.Cells["RESPONSABLES"].Value.ToString();
                     costos_generales_trabajadores.costo_hora = float.Parse(filas.Cells["COSTOPHORA"].Value.ToString());
                     costos_generales_trabajadores.cod_tipo_trabajador = Convert.ToInt32(filas.Cells["Cod"].Value.ToString());
-                    costos_generales_trabajadores.Cod_Costos_Generales = 1;
+                    costos_generales_trabajadores.Cod_Costos_Generales = numerocostosgenerales ;
 
                     oCN_Costos_Generales_Trabajadores.InsertarCostosGeneralesTrabajadores(costos_generales_trabajadores);
                     DgvCosto_Mano_Obra.AllowUserToAddRows = false;
@@ -208,6 +290,9 @@ namespace Pintacars_Express
             DgvCosto_Materiales.AllowUserToAddRows = true;
             DgvCosto_Mano_Obra.AllowUserToAddRows = true;
             MessageBox.Show("Costos Generales Terminada");
+            BtnTerminar.Enabled = false;
+            BuscarNumeroCostosGenerales();
+            LblNumero_Costos_Generales.Text = "N° ";
         }
     }
 }

@@ -18,6 +18,30 @@ namespace CapaDatos
         DataTable Tabla = new DataTable();
 
 
+        //Consultar
+
+
+        public string BuscarNumeroCostosGenerales()
+        {
+            comando.Connection = conexion.AbrirConexion();
+            comando.CommandText = "BuscarNumeroCostosGenerales";
+            comando.CommandType = CommandType.StoredProcedure;
+            Leer = comando.ExecuteReader();
+            if (Leer.Read() == true)
+            {
+                string cod = Leer["Cod"].ToString();
+                Leer.Close();
+                return cod;
+            }
+            else
+            {
+                Leer.Close();
+                return " ";
+            }
+            conexion.CerrarConexion();
+        }
+
+
         //Insertar
 
 

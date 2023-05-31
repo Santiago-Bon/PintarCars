@@ -47,9 +47,11 @@
             // 
             this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(298, 110);
+            this.groupBox1.Location = new System.Drawing.Point(224, 89);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(408, 63);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Size = new System.Drawing.Size(306, 51);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
@@ -57,9 +59,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(175, 28);
+            this.label1.Location = new System.Drawing.Point(131, 23);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(52, 16);
+            this.label1.Size = new System.Drawing.Size(45, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "LOGIN";
             // 
@@ -67,9 +70,11 @@
             // 
             this.groupBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Location = new System.Drawing.Point(298, 336);
+            this.groupBox2.Location = new System.Drawing.Point(224, 273);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(408, 63);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Size = new System.Drawing.Size(306, 51);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             // 
@@ -77,33 +82,39 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(149, 27);
+            this.label2.Location = new System.Drawing.Point(112, 22);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(111, 16);
+            this.label2.Size = new System.Drawing.Size(91, 13);
             this.label2.TabIndex = 1;
             this.label2.Text = "CONTRASEÑA";
             // 
             // TxtCorreo
             // 
-            this.TxtCorreo.Location = new System.Drawing.Point(360, 222);
+            this.TxtCorreo.Location = new System.Drawing.Point(270, 180);
+            this.TxtCorreo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.TxtCorreo.Name = "TxtCorreo";
-            this.TxtCorreo.Size = new System.Drawing.Size(279, 22);
+            this.TxtCorreo.Size = new System.Drawing.Size(210, 20);
             this.TxtCorreo.TabIndex = 2;
+            this.TxtCorreo.Text = "santi@gmail.com";
             // 
             // TxtContrasena
             // 
-            this.TxtContrasena.Location = new System.Drawing.Point(360, 446);
+            this.TxtContrasena.Location = new System.Drawing.Point(270, 362);
+            this.TxtContrasena.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.TxtContrasena.Name = "TxtContrasena";
             this.TxtContrasena.PasswordChar = '*';
-            this.TxtContrasena.Size = new System.Drawing.Size(279, 22);
+            this.TxtContrasena.Size = new System.Drawing.Size(210, 20);
             this.TxtContrasena.TabIndex = 3;
+            this.TxtContrasena.Text = "santi123";
             // 
             // BtnIngresar
             // 
             this.BtnIngresar.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnIngresar.Location = new System.Drawing.Point(435, 535);
+            this.BtnIngresar.Location = new System.Drawing.Point(326, 435);
+            this.BtnIngresar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.BtnIngresar.Name = "BtnIngresar";
-            this.BtnIngresar.Size = new System.Drawing.Size(132, 31);
+            this.BtnIngresar.Size = new System.Drawing.Size(99, 25);
             this.BtnIngresar.TabIndex = 4;
             this.BtnIngresar.Text = "Ingresar";
             this.BtnIngresar.UseVisualStyleBackColor = true;
@@ -113,10 +124,9 @@
             // 
             this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(4, 1);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox2.Location = new System.Drawing.Point(3, 1);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(173, 101);
+            this.pictureBox2.Size = new System.Drawing.Size(130, 82);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 7;
             this.pictureBox2.TabStop = false;
@@ -124,9 +134,10 @@
             // BtnSalir
             // 
             this.BtnSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnSalir.Location = new System.Drawing.Point(864, 535);
+            this.BtnSalir.Location = new System.Drawing.Point(648, 435);
+            this.BtnSalir.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.BtnSalir.Name = "BtnSalir";
-            this.BtnSalir.Size = new System.Drawing.Size(105, 31);
+            this.BtnSalir.Size = new System.Drawing.Size(79, 25);
             this.BtnSalir.TabIndex = 8;
             this.BtnSalir.Text = "Salir";
             this.BtnSalir.UseVisualStyleBackColor = true;
@@ -134,9 +145,9 @@
             // 
             // FrmInicio_Sesion
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(992, 598);
+            this.ClientSize = new System.Drawing.Size(744, 486);
             this.Controls.Add(this.BtnSalir);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.BtnIngresar);
@@ -144,6 +155,7 @@
             this.Controls.Add(this.TxtCorreo);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FrmInicio_Sesion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Inicio de Sesión";

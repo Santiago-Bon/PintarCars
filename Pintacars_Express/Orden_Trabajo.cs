@@ -13,6 +13,8 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Pintacars_Express.FrmInicio_Sesion;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Pintacars_Express
 {
@@ -27,6 +29,14 @@ namespace Pintacars_Express
         CN_Pagos oCN_Pagos = new CN_Pagos();
 
         int numeroordentrabajo = 0;
+        string numerocotizacioninicial = FrmCotizacion_Inicial.CotizacionInicialGlobal.CotizacionInicial;
+        string idvendedor = string.Empty;
+        float totalpagos = 0;
+
+        static public class OrdenTrabajoGlobal //Se crea una variable global
+        {
+            static public string OrdenTrabajo { get; set; } = string.Empty;
+        }
 
         public FrmOrden_Trabajo()
         {
@@ -43,6 +53,9 @@ namespace Pintacars_Express
             MostrarPartesInspecion_IV();
             MostrarTipoPago();
             MostrarMarcas();
+            TraerUsuario();
+            BtnTerminar.Enabled = false;
+            LblCotizacion_Inicial.Text = "N° " + FrmCotizacion_Inicial.CotizacionInicialGlobal.CotizacionInicial;
 
             //creacion_Dgv_ConjuntoExt();
 
@@ -99,6 +112,13 @@ namespace Pintacars_Express
             else
                 numeroordentrabajo = 1;
             LblNumero_Orden_Trabajo.Text = "N° " + numeroordentrabajo.ToString();
+        }
+
+
+        private void TraerUsuario()
+        {
+            TxtRecibe.Text = UsuarioGlobal.Usuario.Rows[0][1].ToString();
+            idvendedor = UsuarioGlobal.Usuario.Rows[0][0].ToString();
         }
 
 
@@ -188,7 +208,7 @@ namespace Pintacars_Express
                 DgvRelacionTrabajo.AllowUserToAddRows = false;
             }
             orden_trabajo.entrega = TxtEntrega.Text;
-            orden_trabajo.D_I_Usuario = TxtRecibe.Text;
+            orden_trabajo.D_I_Usuario = idvendedor.ToString();
             orden_trabajo.mano_obra = float.Parse(TxtMano_Obra.Text);
             orden_trabajo.repuestos = float.Parse(TxtRepuestos.Text);
             orden_trabajo.otros = float.Parse(TxtOtros.Text);
@@ -196,9 +216,11 @@ namespace Pintacars_Express
             orden_trabajo.saldo = float.Parse(TxtSaldo.Text);
             orden_trabajo.D_I_Cliente = "333";
             orden_trabajo.Matricula_Vehiculo = TxtPlaca.Text;
-            orden_trabajo.Cod_Cotizacion_Inicial = 1;
+            orden_trabajo.Cod_Cotizacion_Inicial = Convert.ToInt32(numerocotizacioninicial);
             DgvRelacionTrabajo.AllowUserToAddRows = true;
             oCN_Orden_Trabajo.InsertarOrdenTrabajo(orden_trabajo);
+
+            OrdenTrabajoGlobal.OrdenTrabajo = numeroordentrabajo.ToString();
 
             foreach (DataGridViewRow filas in DgvConjuntoExt.Rows)
             {
@@ -253,7 +275,28 @@ namespace Pintacars_Express
             DgvAbonos.AllowUserToAddRows = false;
 
             BuscarNumeroOrdenTrabajo();
+            BtnTerminar.Enabled = false;
+            numerocotizacioninicial = string.Empty;
+            LblCotizacion_Inicial.Text = "N° ";
             MessageBox.Show("Orden de Trabajo Terminada");
+        }
+
+        private void BtnConfirmar_Click(object sender, EventArgs e)
+        {
+            TxtTotal.Text = (float.Parse(TxtMano_Obra.Text) + float.Parse(TxtRepuestos.Text) + float.Parse(TxtOtros.Text)).ToString();
+            BtnTerminar.Enabled = true;
+        }
+
+        private void BtnConfirmar_Pago_Click(object sender, EventArgs e)
+        {
+            totalpagos = 0;
+            foreach (DataGridViewRow filas in DgvAbonos.Rows)
+            {
+                totalpagos += float.Parse(filas.Cells["ABONO"].Value.ToString());
+                DgvAbonos.AllowUserToAddRows = false;
+            }
+            DgvAbonos.AllowUserToAddRows = true;
+            TxtSaldo.Text = (float.Parse(TxtTotal.Text) - totalpagos).ToString();
         }
     }
 }

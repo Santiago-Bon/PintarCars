@@ -16,7 +16,7 @@ namespace Pintacars_Express
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmPanel_Principal());
+            Application.Run(new FrmInicio_Sesion());
         }
     }
 }

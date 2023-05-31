@@ -10,7 +10,7 @@ namespace CapaDatos
 {
     public class CD_Conexion
     {
-        private SqlConnection conexion = new SqlConnection("Server=LAPTOP-7CT9LAKR\\SQLEXPRESS;Database=PintarCars;Integrated Security=True");
+        private SqlConnection conexion = new SqlConnection("Server=BUCDFPCSEFSD025\\SQLEXPRESS1;Database=PintarCars;Integrated Security=True");
 
         public SqlConnection AbrirConexion()
         {

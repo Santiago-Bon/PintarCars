@@ -22,11 +22,17 @@ namespace Pintacars_Express
             InitializeComponent();
         }
 
+        static public class UsuarioGlobal //Se crea una variable global
+        {
+            static public DataTable Usuario { get; set; }
+        }
+
         private void BtnIngresar_Click(object sender, EventArgs e)
         {
             CE_Usuarios usuario = new CE_Usuarios();
 
             usuario.Correo = TxtCorreo.Text.Trim();
+            UsuarioGlobal.Usuario = oCN_Usuarios.TraerUsuario(usuario);
             usuario.Contraseña = validaciones.Encriptacion(TxtContrasena.Text.Trim());
 
             if (oCN_Usuarios.BuscarUsuario(usuario) == true)

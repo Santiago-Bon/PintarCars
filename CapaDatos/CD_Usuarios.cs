@@ -36,21 +36,5 @@ namespace CapaDatos
             conexion.CerrarConexion();
             return Tabla;
         }
-
-
-        public DataTable TraerUsuario(CE_Usuarios usuario)
-        {
-            Comando.Parameters.Clear();
-            Tabla.Clear();
-            Comando.Connection = conexion.AbrirConexion();
-            Comando.CommandText = "TraerUsuario";
-            Comando.CommandType = CommandType.StoredProcedure;
-            Comando.Parameters.AddWithValue("@Correo", usuario.Correo);
-            Leer = Comando.ExecuteReader();
-            Comando.Parameters.Clear();
-            Tabla.Load(Leer);
-            conexion.CerrarConexion();
-            return Tabla;
-        }
     }
 }

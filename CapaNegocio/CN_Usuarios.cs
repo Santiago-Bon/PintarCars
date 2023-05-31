@@ -14,9 +14,6 @@ namespace CapaNegocio
         CD_Usuarios oCD_Usuarios = new CD_Usuarios();
 
 
-        //Consultar
-
-
         public bool BuscarUsuario(CE_Usuarios usuario)
         {
             DataTable encontrado = oCD_Usuarios.BuscarUsuario(usuario);
@@ -26,13 +23,6 @@ namespace CapaNegocio
             }
             else
                 return false;
-        }
-
-
-        public DataTable TraerUsuario(CE_Usuarios usuario)
-        {
-            DataTable tabla = oCD_Usuarios.TraerUsuario(usuario);
-            return tabla;
         }
     }
 }

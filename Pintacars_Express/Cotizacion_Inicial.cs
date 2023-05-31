@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Pintacars_Express.FrmInicio_Sesion;
 
 namespace Pintacars_Express
 {
@@ -21,6 +22,13 @@ namespace Pintacars_Express
         CN_Tipo_Documento oCN_Tipo_Documento = new CN_Tipo_Documento();
 
         int numerocotizacioninicial = 0;
+        float valortotal = 0;
+        string idvendedor = string.Empty;
+
+        static public class CotizacionInicialGlobal //Se crea una variable global
+        {
+            static public string CotizacionInicial { get; set; } = string.Empty;
+        }
 
 
         public FrmCotizacion_Inicial()
@@ -29,11 +37,13 @@ namespace Pintacars_Express
         }
 
 
-        private void Form2_Load(object sender, EventArgs e)
+        private void FrmCotizacion_Inicial_Load(object sender, EventArgs e)
         {
             creacion_Dgv_Servicios();
             BuscarNumeroCotizacionInicial();
             MostrarTipoDocumento();
+            TraerUsuario();
+            BtnTerminar_Cotizacion_Inicial.Enabled = false;
         }
 
 
@@ -104,6 +114,13 @@ namespace Pintacars_Express
         }
 
 
+        private void TraerUsuario()
+        {
+            TxtVendedor.Text = UsuarioGlobal.Usuario.Rows[0][1].ToString();
+            idvendedor = UsuarioGlobal.Usuario.Rows[0][0].ToString();
+        }
+
+
         //private int BuscarCodigoInspeccionInicial()
         //{
         //    int codinspeccioninicial = 0;
@@ -151,6 +168,32 @@ namespace Pintacars_Express
         #endregion
 
 
+        //Confirmar
+
+
+        private void BtnConfirmar_Click(object sender, EventArgs e)
+        {
+            valortotal = 0;
+            foreach (DataGridViewRow filas in DgvServicios.Rows)
+            {
+                if (filas.Cells["CANTIDAD"].Value.ToString() == null ||
+                    filas.Cells["DESCRIPCÍON"].Value.ToString() == null ||
+                    filas.Cells["Vr. TOTAL"].Value.ToString() == null)
+                {
+                    break;
+                }
+                else
+                {
+                    valortotal += float.Parse(filas.Cells["Vr. TOTAL"].Value.ToString()) * float.Parse(filas.Cells["CANTIDAD"].Value.ToString());
+                    DgvServicios.AllowUserToAddRows = false;
+                }
+            }
+            TxtValor_Total.Text = valortotal.ToString();
+            BtnTerminar_Cotizacion_Inicial.Enabled = true;
+            DgvServicios.AllowUserToAddRows = true;
+        }
+
+
         //Insertar
 
 
@@ -159,6 +202,7 @@ namespace Pintacars_Express
             CE_Clientes cliente = new CE_Clientes();
             CE_Cotizacion_Inicial cotizacion_inicial = new CE_Cotizacion_Inicial();
             CE_Inspeccion_Inicial inspeccion_inicial = new CE_Inspeccion_Inicial();
+
 
             cliente.Nombre = TxtCliente.Text;
             cliente.Direccion = TxtDireccion.Text;
@@ -171,7 +215,7 @@ namespace Pintacars_Express
             cotizacion_inicial.Fecha_Llegada = DtpFecha_Llegada.Value;
             cotizacion_inicial.Observaciones = TxtObservaciones.Text;
             cotizacion_inicial.Costo_Total = float.Parse(TxtValor_Total.Text);
-            cotizacion_inicial.D_I_Usuario = TxtVendedor.Text;
+            cotizacion_inicial.D_I_Usuario = idvendedor;
             cotizacion_inicial.D_I_Cliente = TxtNit.Text;
             cotizacion_inicial.Matricula_Vehiculo = TxtMatricula.Text;
 
@@ -179,6 +223,8 @@ namespace Pintacars_Express
 
             oCN_Clientes.InsertarCliente(cliente);
             oCN_Cotizacion_Inicial.InsertarCotizacionInicial(cotizacion_inicial);
+
+            CotizacionInicialGlobal.CotizacionInicial = numerocotizacioninicial.ToString();
 
             foreach (DataGridViewRow filas in DgvServicios.Rows)
             {
@@ -197,12 +243,14 @@ namespace Pintacars_Express
                     //cotizacion_inspeccioninicial.cod_inspeccion_inicial = BuscarCodigoInspeccionInicial();
                     oCN_Inspeccion_Inicial.InsertarInspeccionInicial(inspeccion_inicial);
                     DgvServicios.AllowUserToAddRows = false;
+                    valortotal += float.Parse(filas.Cells["Vr. TOTAL"].Value.ToString());
                 }
             }
             BuscarNumeroCotizacionInicial();
             Limpiar();
             DgvServicios.AllowUserToAddRows = true;
             MessageBox.Show("Cotización Terminada");
+            BtnTerminar_Cotizacion_Inicial.Enabled = false;
         }
     }
 }
