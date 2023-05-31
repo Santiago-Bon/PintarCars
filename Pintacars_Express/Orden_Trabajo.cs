@@ -26,6 +26,7 @@ namespace Pintacars_Express
         CN_Vehiculos oCN_Vehiculos = new CN_Vehiculos();
         CN_Orden_Trabajo oCN_Orden_Trabajo = new CN_Orden_Trabajo();
         CN_Orden_Trabajo_Inspeccion oCN_Orden_Trabajo_Inspeccion = new CN_Orden_Trabajo_Inspeccion();
+        CN_Cotizacion_Inicial oCN_Cotizacion_Inicial = new CN_Cotizacion_Inicial();
         CN_Pagos oCN_Pagos = new CN_Pagos();
         CN_Clientes oCN_Clientes = new CN_Clientes();
 
@@ -59,6 +60,8 @@ namespace Pintacars_Express
             MostrarCliente();
             BtnTerminar.Enabled = false;
             LblCotizacion_Inicial.Text = "N° " + FrmCotizacion_Inicial.CotizacionInicialGlobal.CotizacionInicial;
+            CboCotizacion_Inicial.Text = FrmCotizacion_Inicial.CotizacionInicialGlobal.CotizacionInicial;
+            MostrarCotizacionInicial();
 
             //creacion_Dgv_ConjuntoExt();
 
@@ -185,6 +188,15 @@ namespace Pintacars_Express
         }
 
 
+        private void MostrarCotizacionInicial()
+        {
+            CboCotizacion_Inicial.DataSource = oCN_Cotizacion_Inicial.MostrarCotizacionInicial();
+            CboCotizacion_Inicial.DisplayMember = "Cod";
+            CboCotizacion_Inicial.ValueMember = "Cod";
+            CboCotizacion_Inicial.SelectedIndex = -1;
+        }
+
+
         private void MostrarCliente()
         {
             DataTable tablacliente = new DataTable();
@@ -298,6 +310,7 @@ namespace Pintacars_Express
             BtnTerminar.Enabled = false;
             numerocotizacioninicial = string.Empty;
             LblCotizacion_Inicial.Text = "N° ";
+            MostrarCotizacionInicial();
             MessageBox.Show("Orden de Trabajo Terminada");
         }
 
@@ -317,6 +330,26 @@ namespace Pintacars_Express
             }
             DgvAbonos.AllowUserToAddRows = true;
             TxtSaldo.Text = (float.Parse(TxtTotal.Text) - totalpagos).ToString();
+        }
+
+        private void CboCotizacion_Inicial_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (CboCotizacion_Inicial.Text != numerocotizacioninicial & CboCotizacion_Inicial.SelectedIndex >0)
+            {
+                LblCotizacion_Inicial.Text = "N° " + CboCotizacion_Inicial.Text;
+                numerocotizacioninicial = CboCotizacion_Inicial.Text;
+                MostrarCliente(); 
+            }
+            //else
+            //{
+            //    CboCotizacion_Inicial.Text = FrmCotizacion_Inicial.CotizacionInicialGlobal.CotizacionInicial;
+            //}
+        }
+
+
+        private void BtnCambiar_Click(object sender, EventArgs e)
+        {
+            CboCotizacion_Inicial.Enabled = true;
         }
     }
 }

@@ -21,6 +21,7 @@ namespace Pintacars_Express
         CN_Costos_Generales oCN_Costos_Generales = new CN_Costos_Generales();
         CN_Costos_Generales_Materiales oCN_Costos_Generales_Materiales = new CN_Costos_Generales_Materiales();
         CN_Costos_Generales_Trabajadores oCN_Costos_Generales_Trabajadores = new CN_Costos_Generales_Trabajadores();
+        CN_Orden_Trabajo oCN_Orden_Trabajo = new CN_Orden_Trabajo();
         CN_Vehiculos oCN_Vehiculos =  new CN_Vehiculos();
 
         int numerocostosgenerales = 0;
@@ -44,6 +45,8 @@ namespace Pintacars_Express
             MostrarVehiculo();
             BtnTerminar.Enabled = false;
             LblNumero_Orden_Trabajo.Text = "N° " + numeroordentrabajo;
+            Cbo_Orden_Trabajo.Text = numeroordentrabajo;
+            MostrarOrdenTrabajo();
             //creacion_Dgv_Costo_Materiales();
             //creacion_Dgv_Costo_Mano_de_Obra();
         }
@@ -188,6 +191,15 @@ namespace Pintacars_Express
         }
 
 
+        private void MostrarOrdenTrabajo()
+        {
+            Cbo_Orden_Trabajo.DataSource = oCN_Orden_Trabajo.MostrarOrdenTrabajo();
+            Cbo_Orden_Trabajo.DisplayMember = "Cod";
+            Cbo_Orden_Trabajo.ValueMember = "Cod";
+            Cbo_Orden_Trabajo.SelectedIndex = -1;
+        }
+
+
         #endregion
 
 
@@ -308,7 +320,24 @@ namespace Pintacars_Express
             MessageBox.Show("Costos Generales Terminada");
             BtnTerminar.Enabled = false;
             BuscarNumeroCostosGenerales();
+            MostrarOrdenTrabajo();
             LblNumero_Orden_Trabajo.Text = "N° ";
+        }
+
+
+        private void BtnCambiar_Click(object sender, EventArgs e)
+        {
+            Cbo_Orden_Trabajo.Enabled = true;
+        }
+
+        private void Cbo_Orden_Trabajo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (Cbo_Orden_Trabajo.Text != numeroordentrabajo & Cbo_Orden_Trabajo.SelectedIndex > 0)
+            {
+                LblNumero_Orden_Trabajo.Text = "N° " + Cbo_Orden_Trabajo.Text;
+                numeroordentrabajo = Cbo_Orden_Trabajo.Text;
+                MostrarVehiculo();
+            }
         }
     }
 }

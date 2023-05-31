@@ -2,6 +2,7 @@
 using CapaEntidades;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,13 @@ namespace CapaNegocio
         {
             string factura = oCD_Orden_Trabajo.BuscarNumeroOrdenTrabajo();
             return factura;
+        }
+
+
+        public DataTable MostrarOrdenTrabajo()
+        {
+            DataTable tabla = oCD_Orden_Trabajo.MostrarOrdenTrabajo();
+            return tabla;
         }
 
 

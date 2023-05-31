@@ -42,6 +42,21 @@ namespace CapaDatos
         }
 
 
+        public DataTable MostrarCotizacionInicial()
+        {
+            comando.Parameters.Clear();
+            Tabla.Clear();
+            comando.Connection = conexion.AbrirConexion();
+            comando.CommandText = "MostrarCotizacionInicial";
+            comando.CommandType = CommandType.StoredProcedure;
+            Leer = comando.ExecuteReader();
+            comando.Parameters.Clear();
+            Tabla.Load(Leer);
+            conexion.CerrarConexion();
+            return Tabla;
+        }
+
+
         //Insertar
 
 

@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCostos_Generales));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label5 = new System.Windows.Forms.Label();
             this.TxtCosto_Total_Mano_Obra = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -75,6 +75,8 @@
             this.LblNumero_Orden_Trabajo = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.Txt_Marca = new System.Windows.Forms.TextBox();
+            this.BtnCambiar = new System.Windows.Forms.Button();
+            this.Cbo_Orden_Trabajo = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -350,14 +352,14 @@
             this.DgvCosto_Materiales.AllowUserToDeleteRows = false;
             this.DgvCosto_Materiales.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DgvCosto_Materiales.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DgvCosto_Materiales.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DgvCosto_Materiales.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.DgvCosto_Materiales.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvCosto_Materiales.EnableHeadersVisualStyles = false;
             this.DgvCosto_Materiales.Location = new System.Drawing.Point(26, 236);
@@ -373,14 +375,14 @@
             this.DgvCosto_Mano_Obra.AllowUserToDeleteRows = false;
             this.DgvCosto_Mano_Obra.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DgvCosto_Mano_Obra.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DgvCosto_Mano_Obra.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DgvCosto_Mano_Obra.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.DgvCosto_Mano_Obra.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvCosto_Mano_Obra.EnableHeadersVisualStyles = false;
             this.DgvCosto_Mano_Obra.Location = new System.Drawing.Point(25, 457);
@@ -535,7 +537,7 @@
             this.LblNumero_Orden_Trabajo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.LblNumero_Orden_Trabajo.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblNumero_Orden_Trabajo.ForeColor = System.Drawing.Color.Red;
-            this.LblNumero_Orden_Trabajo.Location = new System.Drawing.Point(432, 24);
+            this.LblNumero_Orden_Trabajo.Location = new System.Drawing.Point(282, 24);
             this.LblNumero_Orden_Trabajo.Name = "LblNumero_Orden_Trabajo";
             this.LblNumero_Orden_Trabajo.Size = new System.Drawing.Size(82, 24);
             this.LblNumero_Orden_Trabajo.TabIndex = 67;
@@ -547,11 +549,11 @@
             this.label15.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label15.Location = new System.Drawing.Point(262, 30);
+            this.label15.Location = new System.Drawing.Point(162, 30);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(163, 18);
+            this.label15.Size = new System.Drawing.Size(114, 18);
             this.label15.TabIndex = 91;
-            this.label15.Text = "NÚMERO DE ORDEN DE TRABAJO";
+            this.label15.Text = "N ORDEN DE TRABAJO";
             // 
             // Txt_Marca
             // 
@@ -564,11 +566,34 @@
             this.Txt_Marca.TabIndex = 92;
             this.Txt_Marca.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // BtnCambiar
+            // 
+            this.BtnCambiar.BackColor = System.Drawing.Color.White;
+            this.BtnCambiar.Location = new System.Drawing.Point(375, 28);
+            this.BtnCambiar.Name = "BtnCambiar";
+            this.BtnCambiar.Size = new System.Drawing.Size(57, 22);
+            this.BtnCambiar.TabIndex = 94;
+            this.BtnCambiar.Text = "Cambiar";
+            this.BtnCambiar.UseVisualStyleBackColor = false;
+            this.BtnCambiar.Click += new System.EventHandler(this.BtnCambiar_Click);
+            // 
+            // Cbo_Orden_Trabajo
+            // 
+            this.Cbo_Orden_Trabajo.Enabled = false;
+            this.Cbo_Orden_Trabajo.FormattingEnabled = true;
+            this.Cbo_Orden_Trabajo.Location = new System.Drawing.Point(438, 28);
+            this.Cbo_Orden_Trabajo.Name = "Cbo_Orden_Trabajo";
+            this.Cbo_Orden_Trabajo.Size = new System.Drawing.Size(73, 21);
+            this.Cbo_Orden_Trabajo.TabIndex = 93;
+            this.Cbo_Orden_Trabajo.SelectedIndexChanged += new System.EventHandler(this.Cbo_Orden_Trabajo_SelectedIndexChanged);
+            // 
             // FrmCostos_Generales
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(537, 689);
+            this.Controls.Add(this.BtnCambiar);
+            this.Controls.Add(this.Cbo_Orden_Trabajo);
             this.Controls.Add(this.Txt_Marca);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.LblNumero_Orden_Trabajo);
@@ -667,5 +692,7 @@
         private System.Windows.Forms.Label LblNumero_Orden_Trabajo;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox Txt_Marca;
+        private System.Windows.Forms.Button BtnCambiar;
+        private System.Windows.Forms.ComboBox Cbo_Orden_Trabajo;
     }
 }

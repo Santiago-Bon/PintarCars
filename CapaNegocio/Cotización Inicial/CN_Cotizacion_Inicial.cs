@@ -2,6 +2,7 @@
 using CapaEntidades;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,13 @@ namespace CapaNegocio
         {
             string factura = oCD_Cotizacion_Inicial.BuscarNumeroCotizacionInicial();
             return factura;
+        }
+
+
+        public DataTable MostrarCotizacionInicial()
+        {
+            DataTable tabla = oCD_Cotizacion_Inicial.MostrarCotizacionInicial();
+            return tabla;
         }
 
 
