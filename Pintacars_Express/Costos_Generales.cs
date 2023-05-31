@@ -17,10 +17,11 @@ namespace Pintacars_Express
     {
         CN_Materiales oCN_Materiales = new CN_Materiales();
         CN_Tipo_Trabajador oCN_Tipo_Trabajador = new CN_Tipo_Trabajador();
-        CN_Marca oCN_Marca = new CN_Marca();   
+        //CN_Marca oCN_Marca = new CN_Marca();   
         CN_Costos_Generales oCN_Costos_Generales = new CN_Costos_Generales();
         CN_Costos_Generales_Materiales oCN_Costos_Generales_Materiales = new CN_Costos_Generales_Materiales();
         CN_Costos_Generales_Trabajadores oCN_Costos_Generales_Trabajadores = new CN_Costos_Generales_Trabajadores();
+        CN_Vehiculos oCN_Vehiculos =  new CN_Vehiculos();
 
         int numerocostosgenerales = 0;
         string numeroordentrabajo = FrmOrden_Trabajo.OrdenTrabajoGlobal.OrdenTrabajo;
@@ -38,8 +39,9 @@ namespace Pintacars_Express
             BuscarNumeroCostosGenerales();
             MostrarMateriales();
             MostrarTipoTrabajador();
-            MostrarMarcas();
+            //MostrarMarcas();
             TraerUsuario();
+            MostrarVehiculo();
             BtnTerminar.Enabled = false;
             LblNumero_Orden_Trabajo.Text = "N° " + numeroordentrabajo;
             //creacion_Dgv_Costo_Materiales();
@@ -163,12 +165,26 @@ namespace Pintacars_Express
         }
 
 
-        private void MostrarMarcas()
+        //private void MostrarMarcas()
+        //{
+        //    CboMarca.DataSource = oCN_Marca.MostrarMarcas();
+        //    CboMarca.DisplayMember = "Nombre";
+        //    CboMarca.ValueMember = "Cod";
+        //    CboMarca.SelectedIndex = -1;
+        //}
+
+
+        private void MostrarVehiculo()
         {
-            CboMarca.DataSource = oCN_Marca.MostrarMarcas();
-            CboMarca.DisplayMember = "Nombre";
-            CboMarca.ValueMember = "Cod";
-            CboMarca.SelectedIndex = -1;
+            DataTable tablavehiculo = new DataTable();
+            CE_Orden_Trabajo orden_trabajo = new CE_Orden_Trabajo();
+
+            orden_trabajo.Cod = numeroordentrabajo;
+
+            tablavehiculo = oCN_Vehiculos.MostrarVehiculo(orden_trabajo);
+
+            TxtMatricula.Text = tablavehiculo.Rows[0][0].ToString();
+            Txt_Marca.Text = tablavehiculo.Rows[0][1].ToString();
         }
 
 
@@ -292,7 +308,7 @@ namespace Pintacars_Express
             MessageBox.Show("Costos Generales Terminada");
             BtnTerminar.Enabled = false;
             BuscarNumeroCostosGenerales();
-            LblNumero_Costos_Generales.Text = "N° ";
+            LblNumero_Orden_Trabajo.Text = "N° ";
         }
     }
 }

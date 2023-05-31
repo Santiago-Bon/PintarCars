@@ -18,6 +18,25 @@ namespace CapaDatos
         DataTable Tabla = new DataTable();
 
 
+        //Consultar
+
+
+        public DataTable MostrarVehiculo(CE_Orden_Trabajo orden_trabajo)
+        {
+            comando.Parameters.Clear();
+            Tabla.Clear();
+            comando.Connection = conexion.AbrirConexion();
+            comando.CommandText = "MostrarVehiculo";
+            comando.CommandType = CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@Cod", orden_trabajo.Cod);
+            Leer = comando.ExecuteReader();
+            comando.Parameters.Clear();
+            Tabla.Load(Leer);
+            conexion.CerrarConexion();
+            return Tabla;
+        }
+
+
         //Insertar
 
 

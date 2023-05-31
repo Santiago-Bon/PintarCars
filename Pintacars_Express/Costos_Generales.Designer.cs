@@ -68,13 +68,13 @@
             this.TxtMatricula = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.CboMarca = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.BtnTerminar = new System.Windows.Forms.Button();
             this.BtnConfirmar = new System.Windows.Forms.Button();
             this.LblNumero_Costos_Generales = new System.Windows.Forms.Label();
             this.LblNumero_Orden_Trabajo = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
+            this.Txt_Marca = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -454,6 +454,7 @@
             // TxtMatricula
             // 
             this.TxtMatricula.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TxtMatricula.Enabled = false;
             this.TxtMatricula.Location = new System.Drawing.Point(424, 132);
             this.TxtMatricula.Multiline = true;
             this.TxtMatricula.Name = "TxtMatricula";
@@ -484,15 +485,6 @@
             this.label13.TabIndex = 61;
             this.label13.Text = "FECHA ENTREGA";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // CboMarca
-            // 
-            this.CboMarca.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CboMarca.FormattingEnabled = true;
-            this.CboMarca.Location = new System.Drawing.Point(254, 132);
-            this.CboMarca.Name = "CboMarca";
-            this.CboMarca.Size = new System.Drawing.Size(81, 21);
-            this.CboMarca.TabIndex = 63;
             // 
             // label8
             // 
@@ -561,17 +553,28 @@
             this.label15.TabIndex = 91;
             this.label15.Text = "NÚMERO DE ORDEN DE TRABAJO";
             // 
+            // Txt_Marca
+            // 
+            this.Txt_Marca.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Txt_Marca.Enabled = false;
+            this.Txt_Marca.Location = new System.Drawing.Point(247, 132);
+            this.Txt_Marca.Multiline = true;
+            this.Txt_Marca.Name = "Txt_Marca";
+            this.Txt_Marca.Size = new System.Drawing.Size(89, 26);
+            this.Txt_Marca.TabIndex = 92;
+            this.Txt_Marca.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // FrmCostos_Generales
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(537, 689);
+            this.Controls.Add(this.Txt_Marca);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.LblNumero_Orden_Trabajo);
             this.Controls.Add(this.LblNumero_Costos_Generales);
             this.Controls.Add(this.BtnConfirmar);
             this.Controls.Add(this.BtnTerminar);
-            this.Controls.Add(this.CboMarca);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.TxtMatricula);
@@ -657,12 +660,12 @@
         private System.Windows.Forms.TextBox TxtMatricula;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.ComboBox CboMarca;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button BtnTerminar;
         private System.Windows.Forms.Button BtnConfirmar;
         private System.Windows.Forms.Label LblNumero_Costos_Generales;
         private System.Windows.Forms.Label LblNumero_Orden_Trabajo;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox Txt_Marca;
     }
 }

@@ -27,11 +27,13 @@ namespace Pintacars_Express
         CN_Orden_Trabajo oCN_Orden_Trabajo = new CN_Orden_Trabajo();
         CN_Orden_Trabajo_Inspeccion oCN_Orden_Trabajo_Inspeccion = new CN_Orden_Trabajo_Inspeccion();
         CN_Pagos oCN_Pagos = new CN_Pagos();
+        CN_Clientes oCN_Clientes = new CN_Clientes();
 
         int numeroordentrabajo = 0;
         string numerocotizacioninicial = FrmCotizacion_Inicial.CotizacionInicialGlobal.CotizacionInicial;
         string idvendedor = string.Empty;
         float totalpagos = 0;
+        string doccliente = string.Empty;
 
         static public class OrdenTrabajoGlobal //Se crea una variable global
         {
@@ -54,6 +56,7 @@ namespace Pintacars_Express
             MostrarTipoPago();
             MostrarMarcas();
             TraerUsuario();
+            MostrarCliente();
             BtnTerminar.Enabled = false;
             LblCotizacion_Inicial.Text = "N° " + FrmCotizacion_Inicial.CotizacionInicialGlobal.CotizacionInicial;
 
@@ -182,6 +185,23 @@ namespace Pintacars_Express
         }
 
 
+        private void MostrarCliente()
+        {
+            DataTable tablacliente = new DataTable();
+            CE_Cotizacion_Inicial cotizacion_inicial = new CE_Cotizacion_Inicial();
+
+            cotizacion_inicial.Cod = Convert.ToInt32(numerocotizacioninicial);
+
+            tablacliente = oCN_Clientes.MostrarCliente(cotizacion_inicial);
+
+            doccliente = tablacliente.Rows[0][0].ToString(); 
+            TxtSeñores.Text = tablacliente.Rows[0][1].ToString();
+            TxtDireccion.Text = tablacliente.Rows[0][2].ToString();
+            TxtCel_Tel.Text = tablacliente.Rows[0][3].ToString();
+            TxtPlaca.Text = tablacliente.Rows[0][4].ToString();
+        }
+
+
         #endregion
 
         private void BtnTerminar_Click_1(object sender, EventArgs e)
@@ -214,7 +234,7 @@ namespace Pintacars_Express
             orden_trabajo.otros = float.Parse(TxtOtros.Text);
             orden_trabajo.Precio = float.Parse(TxtTotal.Text);
             orden_trabajo.saldo = float.Parse(TxtSaldo.Text);
-            orden_trabajo.D_I_Cliente = "333";
+            orden_trabajo.D_I_Cliente = doccliente;
             orden_trabajo.Matricula_Vehiculo = TxtPlaca.Text;
             orden_trabajo.Cod_Cotizacion_Inicial = Convert.ToInt32(numerocotizacioninicial);
             DgvRelacionTrabajo.AllowUserToAddRows = true;

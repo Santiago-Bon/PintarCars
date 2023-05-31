@@ -18,6 +18,25 @@ namespace CapaDatos
         DataTable Tabla = new DataTable();
 
 
+        //Consultar
+
+
+        public DataTable MostrarCliente(CE_Cotizacion_Inicial cotizacion_inicial)
+        {
+            comando.Parameters.Clear();
+            Tabla.Clear();
+            comando.Connection = conexion.AbrirConexion();
+            comando.CommandText = "MostrarCliente";
+            comando.CommandType = CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@Cod", cotizacion_inicial.Cod);
+            Leer = comando.ExecuteReader();
+            comando.Parameters.Clear();
+            Tabla.Load(Leer);
+            conexion.CerrarConexion();
+            return Tabla;
+        }
+
+
         //Insertar
 
 
